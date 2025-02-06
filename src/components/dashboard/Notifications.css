@@ -1,0 +1,23 @@
+.notifications {
+  position: relative;
+}
+
+.notifications-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #25a45c;
+}
+
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 5px;
+  border-radius: 9999px;
+}
+

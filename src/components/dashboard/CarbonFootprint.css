@@ -1,0 +1,56 @@
+.carbon-footprint {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carbon-footprint h2 {
+  color: #25a45c;
+  margin-bottom: 1rem;
+}
+
+.carbon-score {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.carbon-score .score {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #25a45c;
+}
+
+.carbon-score .unit {
+  margin-left: 0.5rem;
+  color: #6b7280;
+}
+
+.carbon-progress {
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar .progress {
+  height: 100%;
+  background-color: #25a45c;
+}
+
+.carbon-progress p {
+  margin-top: 0.5rem;
+  color: #25a45c;
+}
+
+.carbon-chart img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
