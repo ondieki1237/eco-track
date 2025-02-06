@@ -1,16 +1,5 @@
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import carbonfootprint from "./dashboard/CarbonFootprint"
-import CarbonFootprint from "./dashboard/CarbonFootprint";
-import CommunityChallenges from "./dashboard/CommunityChallenges";
-import EducationalContent from "./dashboard/EducationalContent";
-import Notifications from "./dashboard/Notifications";
-import PickupScheduling from "./dashboard/PickupScheduling";
-import ProgressTracking from "./dashboard/ProgressTracking";
-import QuickActions from "./dashboard/QuickActions";
-import RecyclingLocator from "./dashboard/RecyclingLocator";
-import SustainabilityTips from "./dashboard/SustainabilityTips";
-import UserProfile from "./dashboard/UserProfile";
 import {
   faLeaf,
   faRecycle,
