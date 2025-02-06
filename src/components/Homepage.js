@@ -1,4 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import carbonfootprint from "./dashboard/CarbonFootprint"
+import CarbonFootprint from "./dashboard/CarbonFootprint";
+import CommunityChallenges from "./dashboard/CommunityChallenges";
+import EducationalContent from "./dashboard/EducationalContent";
+import Notifications from "./dashboard/Notifications";
+import PickupScheduling from "./dashboard/PickupScheduling";
+import ProgressTracking from "./dashboard/ProgressTracking";
+import QuickActions from "./dashboard/QuickActions";
+import RecyclingLocator from "./dashboard/RecyclingLocator";
+import SustainabilityTips from "./dashboard/SustainabilityTips";
+import UserProfile from "./dashboard/UserProfile";
 import {
   faLeaf,
   faRecycle,
@@ -11,19 +23,39 @@ import {
   faUsers,
   faLightbulb,
   faCalendarAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import "./Homepage.css";
+} from "@fortawesome/free-solid-svg-icons"
+import "./Homepage.css"
 
 function Dashboard() {
   const dashboardItems = [
-    { icon: faLeaf, title: "Carbon Footprint", description: "Monitor your daily impact" },
-    { icon: faRecycle, title: "Recycling Locator", description: "Find nearby recycling centers" },
-    { icon: faTruck, title: "Pickup Scheduling", description: "Schedule your next pickup" },
-    { icon: faBook, title: "Educational Content", description: "Learn about sustainability" },
-    { icon: faChartLine, title: "Progress Tracking", description: "View your eco-friendly progress" },
-    { icon: faTrophy, title: "Community Challenges", description: "Join eco-challenges" },
-    { icon: faUsers, title: "Eco Community", description: "Connect with like-minded individuals" },
-  ];
+    { icon: faLeaf, title: "Carbon Footprint", description: "Monitor your daily impact", link: "/carbon-footprint" },
+    {
+      icon: faRecycle,
+      title: "Recycling Locator",
+      description: "Find nearby recycling centers",
+      link: "/recycling-locator",
+      
+    },
+    { icon: faTruck, title: "Pickup Scheduling", description: "Schedule your next pickup", link: "/pickup-scheduling" },
+    {
+      icon: faBook,
+      title: "Educational Content",
+      description: "Learn about sustainability",
+      link: "/educational-content",
+    },
+    {
+      icon: faChartLine,
+      title: "Progress Tracking",
+      description: "View your eco-friendly progress",
+      link: "/progress-tracking",
+    },
+    {
+      icon: faTrophy,
+      title: "Community Challenges",
+      description: "Join eco-challenges",
+      link: "/community-challenges",
+    },
+  ]
 
   const leaderboardData = [
     { rank: 1, name: "EcoWarrior", points: 1250 },
@@ -31,7 +63,7 @@ function Dashboard() {
     { rank: 3, name: "RecycleKing", points: 950 },
     { rank: 4, name: "SustainableQueen", points: 900 },
     { rank: 5, name: "ZeroWasteHero", points: 850 },
-  ];
+  ]
 
   const ecoTips = [
     "Use a reusable water bottle to reduce plastic waste.",
@@ -39,8 +71,7 @@ function Dashboard() {
     "Start composting your food scraps to reduce landfill waste.",
     "Use public transportation or carpool to reduce emissions.",
     "Plant trees or support local tree-planting initiatives.",
-    "Opt for eco-friendly products and reduce single-use plastics.",
-  ];
+  ]
 
   return (
     <div className="dashboard">
@@ -54,11 +85,11 @@ function Dashboard() {
       <main className="dashboard-content">
         <div className="dashboard-grid">
           {dashboardItems.map((item, index) => (
-            <div key={index} className="dashboard-item">
+            <Link to={item.link} key={index} className="dashboard-item">
               <FontAwesomeIcon icon={item.icon} className="dashboard-item-icon" />
               <h2>{item.title}</h2>
               <p>{item.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -90,14 +121,53 @@ function Dashboard() {
             ))}
           </div>
         </section>
+
+        <section className="community-section">
+          <h2>
+            <FontAwesomeIcon icon={faUsers} /> Community Impact
+          </h2>
+          <div className="community-stats">
+            <div className="stat-item">
+              <h3>Total Users</h3>
+              <p>10,532</p>
+            </div>
+            <div className="stat-item">
+              <h3>Trees Planted</h3>
+              <p>25,789</p>
+            </div>
+            <div className="stat-item">
+              <h3>CO2 Reduced</h3>
+              <p>1,250 tons</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="upcoming-events-section">
+          <h2>
+            <FontAwesomeIcon icon={faCalendarAlt} /> Upcoming Eco Events
+          </h2>
+          <div className="events-list">
+            <div className="event-item">
+              <h3>Community Cleanup Day</h3>
+              <p>Join us this Saturday for a city-wide cleanup initiative!</p>
+              <span className="event-date">May 15, 2023</span>
+            </div>
+            <div className="event-item">
+              <h3>Sustainable Living Workshop</h3>
+              <p>Learn practical tips for reducing your environmental impact at home.</p>
+              <span className="event-date">May 22, 2023</span>
+            </div>
+            <div className="event-item">
+              <h3>Tree Planting Festival</h3>
+              <p>Help us green the city! Goal: Plant 1000 trees in one day.</p>
+              <span className="event-date">June 5, 2023</span>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="dashboard-footer">
-        <span className="footer-text">Settings</span>
-        <span className="footer-text">Help</span>
-        <span className="footer-text">Contact</span>
-      </footer>
     </div>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard
+
