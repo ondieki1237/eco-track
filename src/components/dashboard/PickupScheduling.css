@@ -1,12 +1,112 @@
+PickupScheduling.css
+
 .pickup-scheduling {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  /* background: white; */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.2);
+  text-align: center;
 }
 
 .pickup-scheduling h2 {
-  color: #25a45c;
-  margin-bottom: 1rem;
+  color: #0cc50c;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
+.scheduling-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scheduling-form {
+  width: 100%;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.form-group-pick {
+  display: flex;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  border: 1px solid #008000;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.form-icon {
+  color: #008000;
+  margin-right: 10px;
+}
+
+.form-input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.schedule-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #008000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.schedule-btn:hover {
+  background: #006400;
+}
+
+.upcoming-pickups {
+  margin-top: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 128, 0, 0.2);
+}
+
+.upcoming-pickups h3 {
+  color: #008000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.pickup-list {
+  text-align: left;
+}
+
+.pickup-item {
+  background: #f0f8f0;
+  padding: 10px;
+  border-left: 5px solid #008000;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.pickup-date {
+  font-weight: bold;
+}
+
+.pickup-type {
+  color: #008000;
+  font-weight: bold;
+}
+
+.pickup-status {
+  color: #333;
+}
