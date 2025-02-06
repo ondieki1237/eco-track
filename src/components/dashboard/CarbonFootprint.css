@@ -1,56 +1,117 @@
-.carbon-footprint {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5rem;
+.carbon-footprint-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* background: radial-gradient(circle, rgba(0, 50, 0, 0.7), rgba(0, 0, 0, 0.9)) !important;  */
+
+  color: white;
+  min-height: 100vh;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  /* color: #fdbb2d; */
+}
+
+.calculator-section,
+.results-section,
+.offset-section,
+.education-section,
+.progress-section,
+.gamification-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.carbon-footprint h2 {
-  color: #25a45c;
+.input-group {
   margin-bottom: 1rem;
 }
 
-.carbon-score {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 1rem;
+label {
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-.carbon-score .score {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #25a45c;
-}
-
-.carbon-score .unit {
-  margin-left: 0.5rem;
-  color: #6b7280;
-}
-
-.carbon-progress {
-  margin-bottom: 1rem;
-}
-
-.progress-bar {
-  height: 8px;
-  background-color: #e5e7eb;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar .progress {
-  height: 100%;
-  background-color: #25a45c;
-}
-
-.carbon-progress p {
-  margin-top: 0.5rem;
-  color: #25a45c;
-}
-
-.carbon-chart img {
+input[type="number"],
+input[type="range"] {
   width: 100%;
-  height: auto;
-  border-radius: 4px;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.recommendations {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recommendations li {
+  margin-bottom: 0.5rem;
+}
+
+.badges {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.badges svg {
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.badges svg.achieved {
+  opacity: 1;
+  color: gold;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 10px 20px;
+  background-color: #fdbb2d;
+  color: #1a2a6c;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.back-link:hover {
+  background-color: #ffa500;
+}
+
+@media (max-width: 768px) {
+  .carbon-footprint-page {
+    padding: 1rem;
+  }
+
+  .calculator-section,
+  .results-section,
+  .offset-section,
+  .education-section,
+  .progress-section,
+  .gamification-section {
+    padding: 1rem;
+  }
 }
 
