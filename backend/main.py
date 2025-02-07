@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Form, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
-from starlette.middleware.sessions import SessionMiddleware  # Correct import for SessionMiddleware
-from passlib.context import CryptContext  # To handle password hashing
+from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
+from passlib.context import CryptContext
 from starlette.requests import Request
 import databases
 import sqlalchemy
@@ -10,22 +10,22 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
-# Initialize FastAPI and set up session middleware
+# Initialize FastAPI
 app = FastAPI()
 
-# Enable CORS middleware to allow your frontend to make requests
+# Enable CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],  # Allow your frontend's URL
+    allow_origins=["http://localhost:8000"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Set up session middleware for handling sessions
-app.add_middleware(SessionMiddleware, secret_key="your-secret-key")  # Secure secret key for sessions
+# Session middleware
+app.add_middleware(SessionMiddleware, secret_key="your-secret-key")
 
-# Database setup (SQLite for example)
+# Database setup (SQLite for now)
 DATABASE_URL = "sqlite:///./test.db"
 database = databases.Database(DATABASE_URL)
 metadata = sqlalchemy.MetaData()
@@ -36,7 +36,14 @@ class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(50), unique=True, index=True)
-    password = Column(String(100))  # Store hashed passwords, not plaintext
+    password = Column(String(100))
+
+class RecycleBin(Base):
+    __tablename__ = "recycle_bins"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(100), nullable=False)
+    location = Column(String(200), nullable=False)
+    description = Column(String(255), nullable=True)
 
 # Create tables
 engine = sqlalchemy.create_engine(DATABASE_URL)
@@ -44,10 +51,8 @@ Base.metadata.create_all(bind=engine)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Initialize password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Helper function to get database session
 def get_db():
     db = SessionLocal()
     try:
@@ -55,52 +60,62 @@ def get_db():
     finally:
         db.close()
 
-# Utility function to hash passwords
 def hash_password(password: str):
     return pwd_context.hash(password)
 
-# Utility function to verify passwords
 def verify_password(plain_password: str, hashed_password: str):
     return pwd_context.verify(plain_password, hashed_password)
 
-# User signup route
+# User signup
 @app.post("/register/")
 async def register(email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.email == email).first()
-    if db_user:
+    if db.query(User).filter(User.email == email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
-    
-    hashed_password = hash_password(password)
-    new_user = User(email=email, password=hashed_password)  # Store hashed password
+    new_user = User(email=email, password=hash_password(password))
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
-    
     return {"message": "User registered successfully"}
 
-# User login route
+# User login
 @app.post("/login/")
 async def login(request: Request, email: str = Form(...), password: str = Form(...), db: Session = Depends(get_db)):
-    db_user = db.query(User).filter(User.email == email).first()
-    if not db_user or not verify_password(password, db_user.password):  # Compare hashed password
+    user = db.query(User).filter(User.email == email).first()
+    if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=400, detail="Invalid email or password")
-    
-    # Store user ID in session cookie
-    request.session['user_id'] = db_user.id
-    
+    request.session['user_id'] = user.id
     return JSONResponse(content={"message": "Login successful"}, status_code=200)
 
-# Protect routes that require login
+# Profile endpoint
 @app.get("/profile/")
 async def profile(request: Request):
     user_id = request.session.get('user_id')
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
-    
     return {"message": f"Welcome user {user_id}"}
 
-# User logout route
+# Logout endpoint
 @app.post("/logout/")
 async def logout(request: Request):
-    request.session.clear()  # Clear the session
+    request.session.clear()
     return {"message": "Logged out successfully"}
+
+# Add a new recycle bin
+@app.post("/recycle-bin/")
+async def add_recycle_bin(
+    name: str = Form(...), 
+    location: str = Form(...), 
+    description: str = Form(None),
+    db: Session = Depends(get_db)
+):
+    new_bin = RecycleBin(name=name, location=location, description=description)
+    db.add(new_bin)
+    db.commit()
+    db.refresh(new_bin)
+    return {"message": "Recycle bin added successfully", "bin": new_bin.id}
+
+# Get all recycle bins
+@app.get("/recycle-bins/")
+async def get_recycle_bins(db: Session = Depends(get_db)):
+    bins = db.query(RecycleBin).all()
+    return bins
