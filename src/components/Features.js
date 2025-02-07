@@ -24,16 +24,6 @@ const features = [
     description: "Join eco-challenges, earn badges, and compete with friends to reduce your environmental impact.",
     icon: faUsers, // Now directly use the imported icon object
   },
-  {
-    name: "Progress Tracking",
-    description: "Visualize your sustainability journey with graphs, charts, and personalized reports.",
-    icon: faChartBar, // Now directly use the imported icon object
-  },
-  {
-    name: "Sustainability Tips",
-    description: "Receive personalized tips and educational content to help you live a more sustainable lifestyle.",
-    icon: faLightbulb, // Now directly use the imported icon object
-  },
 ];
 
 function Features() {

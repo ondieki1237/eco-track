@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLeaf,
   faRecycle,
@@ -12,39 +13,41 @@ import {
   faUsers,
   faLightbulb,
   faCalendarAlt,
-} from "@fortawesome/free-solid-svg-icons"
-import "./Homepage.css"
+} from "@fortawesome/free-solid-svg-icons";
+import "./Homepage.css";
 
 function Dashboard() {
+  const [users, setUsers] = useState(0);
+  const [trees, setTrees] = useState(0);
+  const [co2, setCo2] = useState(0);
+
+  useEffect(() => {
+    const animateNumber = (setter, target, duration) => {
+      let start = 0;
+      const increment = target / (duration / 10);
+
+      const interval = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          start = target;
+          clearInterval(interval);
+        }
+        setter(Math.floor(start));
+      }, 10);
+    };
+
+    animateNumber(setUsers, 10532, 2000);
+    animateNumber(setTrees, 25789, 2500);
+    animateNumber(setCo2, 1250, 1800);
+  }, []);
+
   const dashboardItems = [
     { icon: faLeaf, title: "Carbon Footprint", description: "Monitor your daily impact", link: "/carbon-footprint" },
-    {
-      icon: faRecycle,
-      title: "Recycling Locator",
-      description: "Find nearby recycling centers",
-      link: "/recycling-locator",
-      
-    },
+    { icon: faRecycle, title: "Recycling Locator", description: "Find nearby recycling centers", link: "/recycling-locator" },
     { icon: faTruck, title: "Pickup Scheduling", description: "Schedule your next pickup", link: "/pickup-scheduling" },
-    {
-      icon: faBook,
-      title: "Educational Content",
-      description: "Learn about sustainability",
-      link: "/educational-content",
-    },
-    {
-      icon: faChartLine,
-      title: "Progress Tracking",
-      description: "View your eco-friendly progress",
-      link: "/progress-tracking",
-    },
-    {
-      icon: faTrophy,
-      title: "Community Challenges",
-      description: "Join eco-challenges",
-      link: "/community-challenges",
-    },
-  ]
+    { icon: faBook, title: "Educational Content", description: "Learn about sustainability", link: "/educational-content" },
+    { icon: faChartLine, title: "Progress Tracking", description: "View your eco-friendly progress", link: "/progress-tracking" },
+  ];
 
   const leaderboardData = [
     { rank: 1, name: "EcoWarrior", points: 1250 },
@@ -52,7 +55,7 @@ function Dashboard() {
     { rank: 3, name: "RecycleKing", points: 950 },
     { rank: 4, name: "SustainableQueen", points: 900 },
     { rank: 5, name: "ZeroWasteHero", points: 850 },
-  ]
+  ];
 
   const ecoTips = [
     "Use a reusable water bottle to reduce plastic waste.",
@@ -60,7 +63,7 @@ function Dashboard() {
     "Start composting your food scraps to reduce landfill waste.",
     "Use public transportation or carpool to reduce emissions.",
     "Plant trees or support local tree-planting initiatives.",
-  ]
+  ];
 
   return (
     <div className="dashboard">
@@ -81,6 +84,25 @@ function Dashboard() {
             </Link>
           ))}
         </div>
+        <section className="community-section">
+          <h2>
+            <FontAwesomeIcon icon={faUsers} /> Community Impact
+          </h2>
+          <div className="community-stats">
+            <div className="stat-item">
+              <h3>Total Users</h3>
+              <p>{users.toLocaleString()}</p>
+            </div>
+            <div className="stat-item">
+              <h3>Trees Planted</h3>
+              <p>{trees.toLocaleString()}</p>
+            </div>
+            <div className="stat-item">
+              <h3>CO2 Reduced</h3>
+              <p>{co2.toLocaleString()} tons</p>
+            </div>
+          </div>
+        </section>
 
         <section className="leaderboard-section">
           <h2>
@@ -97,6 +119,7 @@ function Dashboard() {
           </div>
         </section>
 
+
         <section className="eco-tips-section">
           <h2>
             <FontAwesomeIcon icon={faLightbulb} /> Daily Eco Tips
@@ -108,26 +131,6 @@ function Dashboard() {
                 <p>{tip}</p>
               </div>
             ))}
-          </div>
-        </section>
-
-        <section className="community-section">
-          <h2>
-            <FontAwesomeIcon icon={faUsers} /> Community Impact
-          </h2>
-          <div className="community-stats">
-            <div className="stat-item">
-              <h3>Total Users</h3>
-              <p>10,532</p>
-            </div>
-            <div className="stat-item">
-              <h3>Trees Planted</h3>
-              <p>25,789</p>
-            </div>
-            <div className="stat-item">
-              <h3>CO2 Reduced</h3>
-              <p>1,250 tons</p>
-            </div>
           </div>
         </section>
 
@@ -155,8 +158,7 @@ function Dashboard() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 
-export default Dashboard
-
+export default Dashboard;

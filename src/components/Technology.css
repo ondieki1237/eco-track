@@ -17,10 +17,13 @@
 }
 
 .tech-card {
-  background-color: var(--secondary);
+  /* background-color: var(--secondary); */
+  /* background-color: rgba(77, 74, 74, 0.555); */
   border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
+    background: radial-gradient(circle, rgba(0, 50, 0, 0.7), rgba(0, 0, 0, 0.9)) !important; 
+
 }
 
 .tech-card i {

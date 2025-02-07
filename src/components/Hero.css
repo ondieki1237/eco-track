@@ -23,9 +23,10 @@
 
 .hero p {
   font-size: 1.2rem;
-  color: var(--muted);
+  /* color: var(--muted); */
   max-width: 600px;
   margin: 0 auto 2rem;
+  color: #34d399;
 }
 
 .hero-buttons {
@@ -45,3 +46,101 @@ body {
   background-color: #121212; 
 }
 
+.community-impact {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+/* .impact-item {
+  padding: 1rem;
+  flex: 1;
+}
+
+.impact-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.impact-item p {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+
+.impact-item {
+  text-align: center;
+  position: relative;
+}
+
+.progress-circle {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideUp 1.5s ease-out;
+}
+
+.progress-circle svg {
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+}
+
+.progress-circle circle {
+  fill: none;
+  stroke-width: 10;
+  stroke: #ddd;
+  stroke-linecap: round;
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  transition: stroke-dashoffset 2s ease-out;
+}
+
+.progress-circle circle:nth-child(2) {
+  stroke: #4caf50;
+  stroke-dashoffset: 280;
+  transition: stroke-dashoffset 2s ease-in-out;
+}
+
+.number {
+  position: absolute;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #4caf50;
+}
+
+/* Animation for sliding up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
