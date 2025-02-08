@@ -80,4 +80,5 @@ uvicorn main:app --reload
 
 ---
 
-🚀 **You're all set!** Happy coding! 😃
+🚀 **You're all set!** ALWAYS RUN IT ON uvicorn main:app --reload --host 127.0.0.1 --port 8001
+! 😃

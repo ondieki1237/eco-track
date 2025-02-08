@@ -76,7 +76,7 @@ h2 {
 }
 
 .recycling-centers .center {
-  background-color: #e0ffe0;
+  background-color: #e0ffe000;
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -97,9 +97,10 @@ h2 {
 .add-bin-form {
   margin-top: 20px;
   padding: 15px;
-  background-color: #e0ffe0;
+  background-color: #adf98742;
   border: 1px solid #228b22;
   border-radius: 5px;
+  color: #1c741c;
 }
 
 .add-bin-form input {

@@ -13,7 +13,7 @@ function Navbar({ onLoginClick, onSignupClick }) { // Add props for click handle
           <a href="#about">About Us</a>
         </nav>
         <div className="nav-buttons">
-          <a href="https://github.com/ecotrack" target="_blank" rel="noreferrer" className="github-link">
+          <a href="https://github.com/ondieki1237/eco-track.git" target="_blank" rel="noreferrer" className="github-link">
             <i className="fab fa-github"></i>
           </a>
           <button onClick={onLoginClick} className="btn btn-ghost">Log in</button> {/* Call onLoginClick */}

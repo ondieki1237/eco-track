@@ -21,13 +21,15 @@ function RecyclingLocator() {
   const [recyclingCenters, setRecyclingCenters] = useState([]);
   const [selectedType, setSelectedType] = useState("All");
 
+  // Fetch recycling bins from the backend
   useEffect(() => {
-    fetch("http://localhost:8000/recycle-bins/")
+    fetch("http://localhost:8001/recycle-bins/")
       .then((response) => response.json())
       .then((data) => setRecyclingCenters(data))
       .catch((error) => console.error("Error fetching bins:", error));
   }, []);
 
+  // Handle adding a new bin
   const handleAddBin = async () => {
     if (!newBinName || !newBinAddress || !newBinLatitude || !newBinLongitude) {
       alert("Please fill in all fields.");
@@ -40,7 +42,7 @@ function RecyclingLocator() {
     formData.append("description", `Lat: ${newBinLatitude}, Long: ${newBinLongitude}`);
 
     try {
-      const response = await fetch("http://localhost:8000/recycle-bin/", {
+      const response = await fetch("http://localhost:8001/recycle-bin/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData,
@@ -50,7 +52,15 @@ function RecyclingLocator() {
         throw new Error("Failed to add recycling bin.");
       }
 
-      const addedBin = await response.json();
+      const result = await response.json();
+      const addedBin = {
+        id: result.bin.id,
+        name: result.bin.name,
+        address: result.bin.location,
+        latitude: newBinLatitude,
+        longitude: newBinLongitude,
+      };
+
       setRecyclingCenters([...recyclingCenters, addedBin]);
       setNewBinName("");
       setNewBinAddress("");
@@ -62,18 +72,28 @@ function RecyclingLocator() {
     }
   };
 
+  // Get current location
   const handleGetCurrentLocation = () => {
     if (navigator.geolocation) {
+      // Show a pop-up message to the user
+      alert("Please allow access to your location to use this feature.");
+
+      // Request the user's location
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          // Success: Set latitude and longitude in the state
           setNewBinLatitude(position.coords.latitude);
           setNewBinLongitude(position.coords.longitude);
+          alert("Location retrieved successfully!");
         },
         (error) => {
+          // Error: Handle location access denial or failure
+          console.error("Error getting location:", error);
           alert("Unable to access your location. Please enter coordinates manually.");
         }
       );
     } else {
+      // Geolocation is not supported by the browser
       alert("Geolocation is not supported by your browser.");
     }
   };

@@ -9,6 +9,7 @@ import sqlalchemy
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
+from pydantic import BaseModel, ValidationError
 
 # Initialize FastAPI
 app = FastAPI()
@@ -16,7 +17,7 @@ app = FastAPI()
 # Enable CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],
+    allow_origins=["http://localhost:8000"],  # Update this to your frontend's URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -83,20 +84,30 @@ async def login(request: Request, email: str = Form(...), password: str = Form(.
     user = db.query(User).filter(User.email == email).first()
     if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=400, detail="Invalid email or password")
+    
+    # Set user ID in session
     request.session['user_id'] = user.id
-    return JSONResponse(content={"message": "Login successful"}, status_code=200)
+    return JSONResponse(content={"message": "Login successful", "user_id": user.id}, status_code=200)
 
 # Profile endpoint
 @app.get("/profile/")
-async def profile(request: Request):
+async def profile(request: Request, db: Session = Depends(get_db)):
     user_id = request.session.get('user_id')
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
-    return {"message": f"Welcome user {user_id}"}
+    
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"message": f"Welcome, {user.email}"}
 
 # Logout endpoint
 @app.post("/logout/")
 async def logout(request: Request):
+    if 'user_id' not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
     request.session.clear()
     return {"message": "Logged out successfully"}
 
@@ -112,7 +123,15 @@ async def add_recycle_bin(
     db.add(new_bin)
     db.commit()
     db.refresh(new_bin)
-    return {"message": "Recycle bin added successfully", "bin": new_bin.id}
+    return {
+        "message": "Recycle bin added successfully",
+        "bin": {
+            "id": new_bin.id,
+            "name": new_bin.name,
+            "location": new_bin.location,
+            "description": new_bin.description
+        }
+    }
 
 # Get all recycle bins
 @app.get("/recycle-bins/")

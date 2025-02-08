@@ -1,92 +1,88 @@
-/* General styling for the educational content section */
 .educational-content {
-  font-family: Arial, sans-serif;
-  color: #333;
-  padding: 20px;
   text-align: center;
+  padding: 2rem;
+  background: radial-gradient(circle, rgba(0, 50, 0, 0.7), rgba(0, 0, 0, 0.9)) !important; 
+  /* background-color: #f5f5f5; */
 }
 
-/* Header styling */
-.educational-content h2 {
-  color: #28a745; /* Green header text */
+.title {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  color: #2e7d32;
 }
 
-/* Article grid layout */
-.articles-grid {
+.articles-grid, .podcasts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-  gap: 20px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem auto;
+  max-width: 1000px;
 }
 
-/* Article card styling */
-.article-card {
-  background-color: white; /* White card background */
-  border: 1px solid #d1e7dd; /* Light green border */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  width: 100%;
-  max-width: 300px;
-  padding: 15px;
-  text-align: left;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+.article-card, .podcast-card {
+  background: rgb(255, 255, 255);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.article-card:hover {
-  transform: translateY(-5px); /* Slight hover effect */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+.article-card:hover, .podcast-card:hover {
+  transform: translateY(-5px);
 }
 
-/* Icon styling */
-.article-icon {
-  color: #28a745; /* Green icon color */
+.article-icon, .podcast-icon {
   font-size: 2rem;
-  margin-bottom: 10px;
+  color: #2e7d32;
+  margin-bottom: 1rem;
 }
 
-/* Title styling */
-.article-card h3 {
-  color: #28a745; /* Green title text */
-  font-size: 1.2rem;
-  margin: 0 0 10px;
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  /* color: #333; */
 }
 
-/* Description styling */
-.article-card p {
-  color: #555;
-  font-size: 0.9rem;
-  margin: 0 0 10px;
+p {
+  font-size: 1rem;
+  /* color: #555; */
+  margin-bottom: 1rem;
 }
 
-/* Read time styling */
 .read-time {
-  color: #888;
-  font-size: 0.8rem;
-  margin-bottom: 10px;
-}
-
-/* Button styling */
-.btn {
-  background-color: #28a745; /* Green button background */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
   font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: background 0.3s;
 }
-
-.btn:hover {
-  background-color: #1e7e34; 
-  transform: scale(1.05); 
-}
-
 
 .btn-outline {
-  background-color: transparent;
-  color: #28a745; /* Green text color */
-  border: 1px solid #28a745; /* Green border */
+  border: 2px solid #2e7d32;
+  color: #2e7d32;
+  background: none;
+}
+
+.btn-outline:hover {
+  background: #2e7d32;
+  color: white;
+}
+
+.btn-primary {
+  background: #2e7d32;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #1b5e20;
 }
