@@ -1,6 +1,6 @@
-// SignupForm.js
 import React, { useState } from 'react';
-import './FormStyles.css'; // Import shared form styles
+import axios from 'axios'; // Import axios
+import './FormStyles.css';
 
 function SignupForm() {
   const [email, setEmail] = useState('');
@@ -8,23 +8,42 @@ function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if passwords match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
-    if (email === 'test@example.com' && password === 'password123') {  // Replace with your default credentials
-      alert('Signup Successful (Demo)'); // Replace with actual signup logic
-    } else {
-      setError('Invalid email or password');
+    try {
+      // Create form-encoded data
+      const formData = new URLSearchParams();
+      formData.append('email', email);
+      formData.append('password', password);
+
+      // Send the request with form-encoded data
+      const response = await axios.post('http://127.0.0.1:8001/register/', formData, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, // Set the correct content type
+      });
+
+      // Handle successful signup
+      if (response.status === 200) {
+        alert('Signup successful!');
+      }
+    } catch (err) {
+      // Handle errors
+      if (err.response && err.response.data && err.response.data.detail) {
+        setError(err.response.data.detail); // Display detailed error message from backend
+      } else {
+        setError('Error during signup');
+      }
     }
   };
 
   return (
-    <div className="form-container"> {/* Use shared styles */}
+    <div className="form-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -57,8 +76,10 @@ function SignupForm() {
             required
           />
         </div>
-        {error && <p className="error-message">{error}</p>} {/* Display error message */}
-        <button type="submit" className="form-button">Sign Up</button> {/* Use shared styles */}
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit" className="form-button">
+          Sign Up
+        </button>
       </form>
     </div>
   );
