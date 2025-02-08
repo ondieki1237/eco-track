@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# 🚀 EcoTrack Frontend Setup Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the **EcoTrack** frontend setup guide! This document will help you install and set up all the dependencies required for the frontend project. 🌍✨
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 📌 Prerequisites
+Ensure you have the following installed on your system:
 
-### `npm start`
+- [Node.js](https://nodejs.org/en/download/) (Recommended: v16+)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [Yarn](https://yarnpkg.com/getting-started/install) 📦
+- [Expo CLI](https://docs.expo.dev/get-started/installation/) (if using Expo)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📂 Project Setup
 
-### `npm test`
+### 1️⃣ Clone the Repository
+```sh
+ git clone https://github.com/ondieki1237/eco-track.git
+ cd eco-track
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2️⃣ Install Dependencies
+#### 🔹 Using npm:
+```sh
+npm install
+```
+#### 🔹 Using Yarn:
+```sh
+yarn install
+```
 
-### `npm run build`
+This will install all the required dependencies for the project. ✅
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📦 Installed Dependencies
+The following dependencies are used in this project:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Package | Version | Description |
+|---------|---------|-------------|
+| [@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core) | 6.7.2 | FontAwesome core for SVG icons 🎨 |
+| [@fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) | 6.7.2 | Free solid icons for FontAwesome 🔥 |
+| [@fortawesome/react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) | 0.2.2 | React component for FontAwesome icons 🎭 |
+| [axios](https://www.npmjs.com/package/axios) | 1.7.9 | Promise-based HTTP client 🌐 |
+| [cra-template](https://www.npmjs.com/package/cra-template) | 1.2.0 | Create React App template ⚡ |
+| [react](https://react.dev/) | 19.0.0 | React core library ⚛️ |
+| [react-dom](https://www.npmjs.com/package/react-dom) | 19.0.0 | React DOM renderer 🌍 |
+| [react-router-dom](https://www.npmjs.com/package/react-router-dom) | 6.29.0 | Routing for React applications 🛤️ |
+| [react-scripts](https://www.npmjs.com/package/react-scripts) | 5.0.1 | Scripts and configuration for Create React App 🏗️ |
+| [recharts](https://www.npmjs.com/package/recharts) | 2.15.1 | React charting library 📊 |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ▶️ Running the Frontend
+After installing dependencies, start the development server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 🔹 Using npm:
+```sh
+npm start
+```
+#### 🔹 Using Yarn:
+```sh
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This will launch the frontend on `http://localhost:3000/` by default.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🔄 Updating Dependencies
+If you add new dependencies, update `package.json` and install them:
+```sh
+npm install <package_name>
+```
+Then update `package.json` by running:
+```sh
+npm update
+```
+Or using Yarn:
+```sh
+yarn add <package_name>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To check installed versions:
+```sh
+npm list --depth=0
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🎯 Additional Resources
+- [React Documentation](https://react.dev/) ⚛️
+- [React Router Docs](https://reactrouter.com/) 🛤️
+- [Recharts Docs](https://recharts.org/en-US/) 📊
+- [Axios Docs](https://axios-http.com/) 🌐
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+🚀 **You're all set!** Happy coding! 😃
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
